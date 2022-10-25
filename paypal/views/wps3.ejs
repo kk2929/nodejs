@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title><%= title %></title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+
+  <!-- ペイパルのjavascript SDK -->
+  <!-- client-id=＜クライアントID＞と置き換える。 -->
+  <script src="https://www.paypal.com/sdk/js?client-id=<%= client_id %>&locale=ja_JP&currency=JPY&components=buttons,funding-eligibility&intent=capture"></script>
+  </script>
+</head>
+
+<body>
+  <%- include(`./_link`) %>
+
+  <h3>ウェブ ペイメント スタンダード3</h3>
+  <h4>※ペイパルアカウントによる決済（上の黄色のボタン）は、
+    何回か繰り返し決済すると"Request failed with status code 403"のエラーが出て決済できなくなる。<br>
+    時間を置くとできるようになる？
+  </h4>
+
+  <div id="paypal-button-container"></div>
+
+  <script>
+    paypal.Buttons({
+      createOrder: async function (data, actions) {
+        return fetch('./create', {
+          method: 'post',
+          headers: { 'content-type': 'application/json' }
+        }).then(function (res) {
+          if (!res.ok) throw res
+          return res.json();
+        }).then(function (data) {
+          console.log(data);
+          console.log(data.id);
+          return data.id;
+        }).catch(err => {
+          throw err
+        });
+      },
+      onApprove: function (data, actions) {
+        console.log(data);
+        console.log(data.orderID);
+        return fetch('./capture', {
+          method: 'post',
+          headers: { 'content-type': 'application/json' },
+          body: JSON.stringify({
+            orderID: data.orderID,
+            accessToken: data.facilitatorAccessToken
+          })
+        }).then(function (res) {
+          if (!res.ok) throw res
+          return res.json();
+        }).then(function (details) {
+          console.log(details);
+          var msg = `
+            氏名　　：${details.payer.name.surname} ${details.payer.name.given_name}
+            買い手ID：${details.payer.payer_id}
+            支払金額：${details.purchase_units[0].payments.captures[0].amount.value} 円
+            `
+          alert(msg);
+          window.location.href = "/wps3/success/";
+        }).catch(err => {
+          throw err
+        })
+      },
+      onCancel: function (data) {
+        alert("canceled");
+      },
+      onError: function (err) {
+        alert("error");
+        window.location.href = "/wps3/error/";
+      }
+    }).render('#paypal-button-container');
+  </script>
+</body>
+
+</html>

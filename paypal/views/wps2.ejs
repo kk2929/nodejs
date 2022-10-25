@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title><%= title %></title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+
+  <!-- ペイパルのjavascript SDK -->
+  <!-- client-id=＜クライアントID＞と置き換える。 -->
+  <script src="https://www.paypal.com/sdk/js?client-id=<%= client_id %>&locale=ja_JP&currency=JPY&components=buttons,funding-eligibility&intent=capture"></script>
+  </script>
+</head>
+
+<body>
+  <%- include(`./_link`) %>
+
+  <h3>ウェブ ペイメント スタンダード2</h3>
+
+  <div id="paypal-button-container"></div>
+
+  <script>
+    paypal.Buttons({
+      // クレジットカードボタンのみ表示する
+      fundingSource: paypal.FUNDING.CARD,
+
+      createOrder: async function (data, actions) {
+        var order = await fetch('./create', {
+          method: 'post',
+          headers: { 'content-type': 'application/json' }
+        }).then(function (res) {
+          return res.json();
+        });
+
+        var res = actions.order.create(order);
+        console.log(res);
+        return res
+      },
+      onApprove: function (data, actions) {
+        return actions.order.capture().then(function (details) {
+          alert('Transaction completed by ' + details.payer.name.given_name);
+          window.location.href = "/wps2/success/";
+        });
+      },
+      onCancel: function (data) {
+        alert("canceled");
+      },
+      onError: function (err) {
+        alert("error");
+        window.location.href = "/wps2/error/";
+      }
+    }).render('#paypal-button-container');
+  </script>
+</body>
+
+</html>

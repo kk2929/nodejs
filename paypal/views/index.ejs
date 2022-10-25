@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title><%= title %></title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+  <%- include(`./_link`) %>
+
+  <h3>※sandboxでは、決済手段がペイパルアカウントしかないが、<br>
+    本番環境ではクレカ（アカウント登録なし）も使えるらしい。</h3>
+
+  <form action="./create" method="POST">
+    <input type="submit" value="購入">
+  </form>
+</body>
+
+</html>
