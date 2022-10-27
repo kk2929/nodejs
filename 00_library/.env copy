@@ -1,0 +1,7 @@
+DB_HOST=""
+DB_USER=""
+DB_PASS=""
+DB_NAME=""
+
+#SendGrid（メール送信）のAPIキー
+SENDGRID_API_KEY=""
