@@ -1,0 +1,17 @@
+<div>
+	<p>■表示件数■</p>
+	<select id="rowLimitList" name="rowLimit">
+		<option value="10">10件</option>
+		<option value="20">20件</option>
+		<option value="50">50件</option>
+		<option value="100">100件</option>
+		<option value="200">200件</option>
+		<option value="300">300件</option>
+	</select>
+</div>
+
+<script>
+	window.addEventListener("DOMContentLoaded", () => {
+		$('#rowLimitList').val(['<%= rowLimit %>']);	//プルダウンの初期状態
+	});
+</script>

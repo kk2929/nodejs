@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>
+    メモアプリ
+  </title>
+  <link rel='stylesheet' href='/manage/stylesheets/style.css' />
+  <link rel='stylesheet' href='/manage/stylesheets/memo.css' />
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js">//jQueryのCDN</script>
+</head>
+
+<body>
+  <%- include('../../../public/ejs/header') %>
+  <div>
+    <input type="text" id="filterText" placeholder="検索する">
+
+    <ul id="itemList"></ul>
+
+    <input type="text" id="addText">
+    <a class="button" id="addButton">追加する</a>
+  </div>
+</body>
+
+<script>
+  $("#addButton").on("click", () => {
+    console.log("「追加する」がクリックされました")
+    var addText = $("#addText").val();
+    if (addText != "") {
+      addText = "<li>" + addText + "</li>"
+      $("ul").append(addText)
+      $("#addText").val("")
+
+      search();
+    }
+  })
+
+  $("#filterText").on("keyup", () => {
+    search();
+  })
+  function search() {
+    console.log("検索実行");
+    var filter = $("#filterText").val();
+    $('ul li').each((i, e) => {
+      if (e.textContent.indexOf(filter) !== -1) {
+        $(e).show()
+      } else {
+        $(e).hide()
+      }
+    })
+  }
+</script>
+
+</html>

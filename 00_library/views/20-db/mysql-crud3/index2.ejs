@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title><%= pageName %></title>
+	<link rel='stylesheet' href='/manage/stylesheets/style.css' />
+	<!-- jQueryのCDN -->
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+	<!-- jQuery UI -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+	<!-- katex(分数表示) ここから -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.2/dist/katex.min.css" integrity="sha384-Cqd8ihRLum0CCg8rz0hYKPoLZ3uw+gES2rXQXycqnL5pgVQIflxAUDS7ZSjITLb5" crossorigin="anonymous">
+	<!-- The loading of KaTeX is deferred to speed up page rendering -->
+	<script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.2/dist/katex.min.js" integrity="sha384-1Or6BdeNQb0ezrmtGeqQHFpppNd7a/gw29xeiSikBbsb44xu3uAo8c7FwbF5jhbd" crossorigin="anonymous"></script>
+	<!-- To automatically render math in text elements, include the auto-render extension: -->
+	<script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.2/dist/contrib/auto-render.min.js" integrity="sha384-vZTG03m+2yp6N6BNi5iM4rW4oIwk5DfcNdFfxkk9ZWpDriOkXX8voJBFrAO7MpVl" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
+	<!-- katex(分数表示) ここまで -->
+</head>
+
+<body>
+	<%- include(`${routespath}/../public/ejs/header`) %>
+	<div class="css1">
+		<input class="btn1" type="button" onclick="location.href='/manage/<%= filepath %>/create/?pg=<%= pg %>&pg2=<%= pg2 %>&courseid=<%= courseid %>'" value="create(カリキュラムを追加する)">
+	</div>
+	<div class="css4"><%- courseData %></div>
+	<%- include(`${routespath}/../public/ejs/searchRowLimit`) %>
+	<hr />
+	<code>
+		<% const pagenavdata={
+			url1: `/manage/${filepath}/index2/${courseid}/?pg=${pg}&pg2=`,
+			url2: ``,
+			pg: pg2 , 
+			pgco: pgco }; %>
+	</code>
+	<%- include(`${routespath}/../public/ejs/page`,pagenavdata) %>
+	<table>
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>履修順序</th>
+				<th>履修種類</th>
+				<th>答え</th>
+			</tr>
+		</thead>
+		<tbody class="indexTable">
+			<% for (var i in data) { %>
+			<% var id = data[i].id %>
+			<tr data-href="/manage/<%= filepath %>/edit/<%= id %>/?pg=<%= pg %>&pg2=<%= pg2 %>&courseid=<%= courseid %>">
+				<td><%= data[i].id %></td>
+				<td><%= data[i].exeorder %></td>
+				<td><%= data[i].kind %></td>
+				<td>$$<%= data[i].answer %>$$</td>
+			</tr>
+			<% } %>
+		</tbody>
+	</table>
+	<%- include(`${routespath}/../public/ejs/page`,pagenavdata) %>
+
+	<script src="/manage/js/table-href.js"></script><!--  テーブル行をクリックでページ遷移  -->
+	<script type="text/javascript">
+	</script>
+</body>
+
+</html>

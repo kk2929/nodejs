@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title><%= pageName %></title>
+	<link rel="stylesheet" href="/manage/stylesheets/style.css" />
+	<!-- jQueryのCDN -->
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+</head>
+
+<body>
+	<%- include(`${routespath}/../public/ejs/header`) %>
+
+	<form method="post" action="">
+		<div class="css5">
+			<div>
+				<span>STR_</span>
+				<input type="text" name="str_" size="80" value="">
+			</div>
+			<div>
+				<span>NUM_</span>
+				<input type="number" name="num_" size="80" value="">
+			</div>
+			<div>
+				<span>DATE_</span>
+				<input type="date" name="date_" size="80" value="">
+			</div>
+		</div>
+
+		<input class="btn1" type="submit" value="作　成">
+	</form>
+
+	<script>
+	</script>
+</body>
+
+</html>

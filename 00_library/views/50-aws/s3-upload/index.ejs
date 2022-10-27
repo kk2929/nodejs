@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title><%= pageName %></title>
+	<link rel="stylesheet" href="/manage/stylesheets/style.css">
+	<!-- jQueryのCDN -->
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+</head>
+
+<body>
+	<%- include(`${routespath}/../public/ejs/header`) %>
+	<div class="css1">
+	</div>
+
+	<form method="post" enctype='multipart/form-data'>
+		<input type="file" accept="*" name="inputFile">
+		<input class="btn1" type="submit" value="S3にアップロード">
+	</form>
+
+	<script>
+	</script>
+</body>
+
+</html>

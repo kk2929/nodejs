@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title><%= pageName %></title>
+	<link rel='stylesheet' href='/manage/stylesheets/style.css' />
+	<!-- jQueryのCDN -->
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+	<!-- jQuery UI -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+</head>
+
+<body>
+	<%- include(`${routespath}/../public/ejs/header`) %>
+	<%- include(`${routespath}/../public/ejs/searchGrade`) %>
+	<hr />
+	<code>
+		<% const pagenavdata={
+			url1: `/manage/${filepath}/index/?pg=`,
+			url2: ``,
+			pg: pg , 
+			pgco: pgco }; %>
+	</code>
+	<%- include(`${routespath}/../public/ejs/page`,pagenavdata) %>
+	<table>
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>単元名</th>
+				<th>サブタイトル</th>
+				<th>受講順序</th>
+				<th>学年</th>
+				<th>有効到来期日</th>
+			</tr>
+		</thead>
+		<tbody class="indexTable">
+			<% for (var i in data) { %>
+			<% var id = data[i].id %>
+			<tr data-href="/manage/<%= filepath %>/index2/<%= id %>/?pg=<%= pg %>&pg2=1">
+				<td><%= data[i].id %> </td>
+				<td><%= data[i].title %> </td>
+				<td><%= data[i].subtitle %></td>
+				<td><%= data[i].exeorder %></td>
+				<td><%= data[i].grade %> 年</td>
+				<!-- 日付がnullだと.toFormat()でエラーが出るので、条件分岐する必要がある -->
+				<% var d = data[i].validdate %>
+				<td><%- d ? d.toFormat('YYYY年MM月DD日') :'' %></td>
+			</tr>
+			<% } %>
+		</tbody>
+	</table>
+	<%- include(`${routespath}/../public/ejs/page`,pagenavdata) %>
+
+	<script src="/manage/js/table-href.js"></script><!--  テーブル行をクリックでページ遷移  -->
+	<script type="text/javascript">
+	</script>
+</body>
+
+</html>

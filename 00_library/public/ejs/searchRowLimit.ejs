@@ -1,0 +1,25 @@
+<form class="css4" id="submit_form" method="post" onchange="SubmitForm()">
+	<%- include(`${routespath}/../public/ejs/rowLimit`) %>
+	<input class="reset-btn" type="button" value="全条件リセット" onclick="ResetForm()">
+</form>
+
+<script type="text/javascript">
+	function SubmitForm() {
+		var target = document.getElementById("submit_form");
+		target.method = "post";
+		target.submit();
+	}
+
+	function ResetForm() {
+		/* 確認ダイアログ */
+		if (window.confirm('絞り込み条件をリセットしますか？')) {
+			$('#rowLimitList').val(["20"]);
+			var target = document.getElementById("submit_form");
+			target.method = "post";
+			target.submit();
+		}
+		else {
+			return false;   // キャンセルで削除を中止
+		}
+	}
+</script>

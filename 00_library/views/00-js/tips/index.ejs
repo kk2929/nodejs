@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title><%= pageName %></title>
+	<link rel="stylesheet" href="/manage/stylesheets/style.css" />
+	<!-- jQueryのCDN -->
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+</head>
+
+<body>
+	<%- include('../../../public/ejs/header') %>
+	<script>
+		var obj1 = {
+			p1: "p1a",
+			p2ary: ["p2a", "p2b", "p2c"],
+		}
+		//.? ：オプショナルチェーン。undefined のプロパティを読んでもエラーにならない（undefined.プロパティ としても大丈夫）
+		console.log("1:", obj1.p0);	//undefined
+		// console.log("2:", obj1.p0.p0);	//エラー
+		console.log("3:", obj1.p0?.p0);	//undefined
+		// 以下のURLによると、Node.jsではv14から対応している。フォトンはv8.5.0なので、サーバーサイドではオプショナルチェーンは使用できない
+		// https://qiita.com/suin/items/0a76ad88e494fd72f903
+
+		console.log("4:", obj1.p2ary[-1]);	//undefined
+		// console.log("5:", obj1.p2ary[-1].p0);	//エラー
+		console.log("6:", obj1.p2ary[-1]?.p0);	//undefined
+
+		console.log("7:", obj1.p0);	//undefined
+		// console.log("8:", obj1.p0[0]);	//エラー
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title><%= pageName %></title>
+	<link rel="stylesheet" href="/manage/stylesheets/style.css" />
+	<!-- jQueryのCDN -->
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+</head>
+
+<body>
+	<%- include('../../../public/ejs/header') %>
+	<div class="css1">
+		<input class="btn1" type="button" onclick="location.href='/manage/<%= filepath %>/index/'" value="async基本">
+	</div>
+	<div class="css1">
+		<input class="btn1" type="button" onclick="location.href='/manage/<%= filepath %>/index/a1/'" value="再起関数">
+	</div>
+	<div class="css1">
+		<input class="btn1" type="button" onclick="location.href='/manage/<%= filepath %>/index/b1/'" value="枝分かれした再帰関数">
+		<input class="btn1" type="button" onclick="location.href='/manage/<%= filepath %>/index/b2/'" value="枝分かれした再帰関数(コールバック使用)">
+	</div>
+	<div class="css1">
+		<input class="btn1" type="button" onclick="location.href='/manage/<%= filepath %>/index/z1/'" value="フィボナッチ数列1">
+		<input class="btn1" type="button" onclick="location.href='/manage/<%= filepath %>/index/z2/'" value="フィボナッチ数列2">
+		<input class="btn1" type="button" onclick="location.href='/manage/<%= filepath %>/index/z3/'" value="フィボナッチ数列3">
+		<input class="btn1" type="button" onclick="location.href='/manage/<%= filepath %>/index/zz1/'" value="コラッツ予想">
+	</div>
+	<script>
+	</script>
+</body>
+
+</html>

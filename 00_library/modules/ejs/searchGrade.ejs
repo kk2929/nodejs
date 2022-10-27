@@ -1,0 +1,37 @@
+<form class="selectform" id="submit_form" method="post" onchange="FormSubmit()">
+	<div class="headwrapper3">
+		<div style="width: 110px;">
+			■対象学年■
+			<select class="selectbox" id="gradelist" name="qgrade">
+				<option value="all">全て</option>
+				<option value="2">2年生</option>
+				<option value="3">3年生</option>
+				<option value="4">4年生</option>
+				<option value="5">5年生</option>
+				<option value="6">6年生</option>
+				<option value="other">その他</option>
+			</select>
+		</div>
+		<%- include('../../modules/ejs/pageSize') %>
+		<input class="resetbtn" type="button" value="全条件リセット" onclick="FormReset()">
+	</div>
+</form>
+
+<script type="text/javascript">
+	function FormSubmit() {
+		var target = document.getElementById("submit_form");
+		target.method = "post";
+		target.submit();
+	}
+	function FormReset() {
+		if (window.confirm('絞り込み条件をリセットしますか？')) {   // 確認ダイアログの内容
+			$('#pageSizelist').val(["20"]);
+			var target = document.getElementById("submit_form");
+			target.method = "post";
+			target.submit();
+		}
+		else {
+			return false;   // キャンセルで削除を中止
+		}
+	}
+</script>

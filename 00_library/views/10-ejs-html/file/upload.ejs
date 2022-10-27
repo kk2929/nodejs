@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>ファイルアップロード</title>
+	<link rel='stylesheet' href='/manage/stylesheets/style.css' />
+	<link rel='stylesheet' href='/manage/stylesheets/style/file.css' />
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js">//jQueryのCDN</script>
+</head>
+
+<body>
+	<%- include('../../../public/ejs/header') %>
+	<div class="file-select">
+		<input type="file" id="upload">
+		<input type="button" id="uploadButton" value="ローカルに保存">
+		<span>保存先パス ： ./aaa_uploads/</span>
+	</div>
+	<div class="file-select">
+		<input type="file" id="u1">
+		<input type="button" id="ub1" value="NASに保存">
+		<span>保存先パス ： <%= nas_path %></span>
+	</div>
+</body>
+<script>
+	$('#uploadButton').click(function () {
+		const files = $('#upload')[0].files;
+		const formData = new FormData();
+		formData.append('file', files[0]);
+		console.log(formData);
+		console.log(files);
+
+		$.ajax({
+			url: './local',
+			method: 'post',
+			data: formData,
+			processData: false,
+			contentType: false
+		}).done(function (res) {
+			console.log(res);
+		}).fail(function (err) {
+			console.log(err);
+		})
+	})
+
+	$('#ub1').click(function () {
+		const files = $('#u1')[0].files;
+		const formData = new FormData();
+		formData.append('file', files[0]);
+
+		$.ajax({
+			url: './online',
+			method: 'post',
+			data: formData,
+			processData: false,
+			contentType: false,
+			success: function (data, textStatus) {
+				window.location = '/manage/file/upload/';
+			}
+		}).done(function (res) {
+			console.log(res);
+		}).fail(function (err) {
+			console.log(err);
+		})
+	})
+</script>
+
+</html>

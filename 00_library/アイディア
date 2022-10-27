@@ -1,0 +1,7 @@
+//代入しようとした値が 「undefined・空文字・null」 なら、代わりに -1 を代入（undefined のプロパティを読んでも大丈夫）
+var grade = List?.options[index_nub]?.value || -1;
+
+//グローバル変数未定義によるエラーを回避
+https://www.bugbugnow.net/2021/02/is-not-defined.html
+
+

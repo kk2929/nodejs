@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title><%= pageName %></title>
+	<link rel="stylesheet" href="/manage/stylesheets/style.css" />
+	<!-- jQueryのCDN -->
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+</head>
+
+<body>
+	<%- include(`${routespath}/../public/ejs/header`) %>
+	<div class="">
+		<hr>
+		<h3>css10：上ぞろえチェックボックス</h3>
+		<div class="css10">
+			<div>
+				<span>列１</span>
+				<label><input type="checkbox">１</label>
+			</div>
+			<div>
+				<span>列２</span>
+				<label><input type="checkbox">２－１</label>
+				<label><input type="checkbox">２－２</label>
+			</div>
+			<div>
+				<span>列３</span>
+				<label><input type="checkbox">３ー１あああああああああああ</label>
+				<label><input type="checkbox">３－２</label>
+				<label><input type="checkbox">３－３</label>
+			</div>
+		</div>
+		<hr>
+	</div>
+</body>
+
+</html>

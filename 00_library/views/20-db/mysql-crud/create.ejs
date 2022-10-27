@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title><%= pageName %></title>
+	<link rel='stylesheet' href='/manage/stylesheets/style.css' />
+	<!-- jQueryのCDN -->
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+	<!-- jQuery UI -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+</head>
+
+<body>
+	<%- include(`${routespath}/../public/ejs/header`) %>
+
+	<form method="post" action="">
+		<div class="css5">
+			<div>
+				<span>_int</span>
+				<input type="number" name="_int" autofocus required>
+			</div>
+			<div>
+				<span>_varchar</span>
+				<input type="text" name="_varchar">
+			</div>
+			<div>
+				<span>_datetime</span>
+				<input type="date" name="_datetime" required>
+			</div>
+		</div>
+
+		<input class="btn1" type="submit" value="作　成">
+	</form>
+
+	<script>
+		$required = $("input[required]").prev();
+		$required.prepend("<span style='color: red;'>※必須入力※</span>");
+		$required.css({ "background-color": "" });
+	</script>
+</body>
+
+</html>

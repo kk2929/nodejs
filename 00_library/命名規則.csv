@@ -1,0 +1,9 @@
+■言語名,■種類,■規則,■例1,■例2,■備考
+JavaScript,変数,キャメルケース,camelCase,variableName,
+,関数,キャメルケース,camelCase(),functionName(),関数は最後に括弧がつく&ハイライトの色が違うので、変数と見分けられる
+"HTML,CSS",id属性,スネークケース,snake_case,id_name,
+,class属性,ケバブケース,kebab-case,class-name,
+その他,ファイル名,ケバブケース,kebab-case,file-name,
+,,,,,
+,,,,,
+,,,,,

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>テンプレート</title>
+	<link rel="stylesheet" href="/manage/stylesheets/style.css" />
+	<!-- jQueryのCDN -->
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+</head>
+
+<body>
+	<%- include('../../../public/ejs/header') %>
+	<div class="css1">
+		<input class="btn1" type="button" onclick="location.href='/manage/<%= filepath %>/index/'" value="全データ">
+		<input class="btn1" type="button" onclick="location.href='/manage/<%= filepath %>/index/a/'" value="クエリ2つ">
+		<input class="btn1" type="button" onclick="location.href='/manage/<%= filepath %>/index/b/'" value="クエリ結果 0件">
+		<input class="btn1" type="button" onclick="location.href='/manage/<%= filepath %>/index/c/'" value="存在しないテーブルを参照">
+		<input class="btn1" type="button" onclick="location.href='/manage/<%= filepath %>/index/d/'" value="構文ミス">
+	</div>
+	<% if (data) { %>
+	<table>
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>整数</th>
+				<th>文字列</th>
+				<th>日時</th>
+				<th>作成日</th>
+				<th>更新日</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% for (var i in data) { %>
+			<tr>
+				<td> <%=data[i].id %></td>
+				<td> <%=data[i]._int %></td>
+				<td> <%=data[i]._varchar %></td>
+				<td>
+					<!-- 日付がnullだとエラーが出るので処理を分ける -->
+					<% if (data[i]._datetime !==null) { %>
+					<%- data[i]._datetime.toFormat('YYYY-MM-DD HH24:MI:SS') %>
+					<% } else { %>
+					<% } %>
+				</td>
+				<td>
+					<% if (data[i].created_at !==null) { %>
+					<%- data[i].created_at.toFormat('YYYY-MM-DD HH24:MI:SS') %>
+					<% } else { %>
+					<% } %>
+				</td>
+				<td>
+					<% if (data[i].updated_at !==null) { %>
+					<%- data[i].updated_at.toFormat('YYYY-MM-DD HH24:MI:SS') %>
+					<% } else { %>
+					<% } %>
+				</td>
+			</tr>
+			<% } %>
+		</tbody>
+	</table>
+	<% }; %>
+	<% if (data2) { %>
+	<table>
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>苗字</th>
+				<th>名前</th>
+				<th>生年月日</th>
+				<th>年齢</th>
+				<th>所属部署ID</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% for (var i in data2) { %>
+			<tr>
+				<td> <%=data2[i].id %></td>
+				<td> <%=data2[i].family_name %></td>
+				<td> <%=data2[i].first_name %></td>
+				<td>
+					<!-- 日付がnullだとエラーが出るので処理を分ける -->
+					<% if (data2[i].birthday) { %>
+					<%- data2[i].birthday.toFormat('YYYY-MM-DD') %>
+					<% } else { %>
+					<% } %>
+				</td>
+				<td> <%=data2[i].age %></td>
+				<td> <%=data2[i].busyo_id %></td>
+			</tr>
+			<% } %>
+		</tbody>
+	</table>
+	<% }; %>
+	<script>
+	</script>
+</body>
+
+</html>

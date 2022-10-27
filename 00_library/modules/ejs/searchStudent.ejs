@@ -1,0 +1,70 @@
+<form class="selectform" id="submit_form" method="post" onchange="FormSubmit()">
+	<div class="headwrapper3">
+		<div class="search">
+			■検索フォーム■
+			<input id="search" class="search" name="qsearch" placeholder="検索フォーム">
+			現在検索ワード：<%=qsearch %>
+		</div>
+		<div style="width: 110px;">
+			■現在学年■
+			<select class="selectbox" id="gradelist" name="qgrade">
+				<option value="all">全て</option>
+				<option value="2">2年生</option>
+				<option value="3">3年生</option>
+				<option value="4">4年生</option>
+				<option value="5">5年生</option>
+				<option value="6">6年生</option>
+				<option value="other">その他</option>
+			</select>
+		</div>
+		<div>
+			■今回受講単元名(単元ID)■
+			<select class="selectbox" id="courselist" name="qcourse">
+				<option value="all">全て</option>
+				<% for (var i in mcourseList) { %>
+				<option value="<%=mcourseList[i].id %>">
+					<%=mcourseList[i].title %>　[ID:<%= mcourseList[i].id %>]
+				</option>
+				<% } %>
+			</select>
+		</div>
+		<div style="width: 130px;">
+			■有効フラグ■
+			<select class="selectbox" id="validlist" name="qvalid">
+				<option value="all">全て</option>
+				<option value="1">有効</option>
+				<option value="0">無効</option>
+			</select>
+		</div>
+		<div style="width: 160px;">
+			■履修ログの有無■
+			<select class="selectbox" id="loglist" name="qlog">
+				<option value="all">全て</option>
+				<option value="0">ログなしのみ</option>
+			</select>
+		</div>
+	</div>
+	<div class="headwrapper3">
+		<%- include('../../modules/ejs/pageSize') %>
+		<input class="resetbtn" type="button" value="全条件リセット" onclick="FormReset()">
+	</div>
+</form>
+
+<script type="text/javascript">
+	function FormSubmit() {
+		var target = document.getElementById("submit_form");
+		target.method = "post";
+		target.submit();
+	}
+	function FormReset() {
+		if (window.confirm('絞り込み条件をリセットしますか？')) {   // 確認ダイアログの内容
+			$('#pageSizelist').val(["20"]);
+			var target = document.getElementById("submit_form");
+			target.method = "post";
+			target.submit();
+		}
+		else {
+			return false;   // キャンセルで削除を中止
+		}
+	}
+</script>

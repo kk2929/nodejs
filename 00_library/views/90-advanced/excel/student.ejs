@@ -1,0 +1,24 @@
+<thead>
+	<tr>
+		<th style="width:5%;">生徒ID</th>
+		<th style="width:5%;">受講単元数</th>
+		<th style="width:5%;">不合格回数</th>
+		<th style="width:5%;">正答数 / 問題数</th>
+		<th style="width:8%;">正答率</th>
+	</tr>
+</thead>
+<tbody>
+	<% for (var i in data) { %>
+	<% var q = ("   " + data[i].q_co).slice(-3) %>
+	<% var o = ("    " + data[i].o_co).slice(-4) %>
+	<tr data-href="/manage/<%= filepath %>/index/student/<%= data[i].student_id %>/">
+		<td> <%= data[i].student_id %></td>
+		<td> <%= data[i].test_co %></td>
+		<td> <%= data[i].failure_co %></td>
+		<td>
+			<pre><%= o %> 問 / <%= q %> 問</pre><!-- preタグ：半角スペースをそのまま表示する -->
+		</td>
+		<td> <%= Math.round( o / q * 100 ) %> %</td>
+	</tr>
+	<% } %>
+</tbody>

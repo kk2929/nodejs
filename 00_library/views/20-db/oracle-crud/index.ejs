@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title><%= pageName %></title>
+	<link rel="stylesheet" href="/manage/stylesheets/style.css" />
+	<!-- jQueryのCDN -->
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+</head>
+
+<body>
+	<%- include(`${routespath}/../public/ejs/header`) %>
+	<div class="css1">
+		<input class="btn1" type="button" onclick="location.href='/manage/<%= filepath %>/create/'" value="create(新規作成)">
+	</div>
+
+	<table>
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>STR_</th>
+				<th>NUM_</th>
+				<th>DATE_</th>
+				<th>CREATION_TS</th>
+			</tr>
+		</thead>
+		<tbody class="indexTable">
+			<% for (var i in rows) { %>
+			<% var d1 = rows[i].DATE_ %>
+			<% var d2 = rows[i].CREATION_TS %>
+			<tr data-href="/manage/<%= filepath %>/edit/?id=<%= rows[i].ID %>">
+				<td><%= rows[i].ID %></td>
+				<td><%= rows[i].STR_ %></td>
+				<td><%= rows[i].NUM_ %></td>
+				<td><%= d1 ? d1.toFormat('YYYY-MM-DD') : "" %></td>
+				<td><%= d2 ? d2.toISOString() : "" %></td>
+			</tr>
+			<% } %>
+		</tbody>
+	</table>
+
+	<script src="/manage/js/table-href.js"></script><!--  テーブル行をクリックでページ遷移  -->
+	<script>
+	</script>
+</body>
+
+</html>

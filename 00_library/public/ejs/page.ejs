@@ -1,0 +1,18 @@
+<div class="pagenav">
+	<span>&lt;&lt;</span>
+	<code>
+		<% if (pg> 1) { %>
+ 			<span>　<a href="<%= url1 + 1 + url2 %>"> 1 </a>　…</span>
+  		<% } %> <% for (let i=5; i>= 1; i--) {%> <% if (pg - i> 1) { %>
+ 			<span>　<a href="<%= url1 + (pg - i) + url2 %>"> <%= pg - i %> </a></span>
+ 		<% } %> <% } %>
+ 			<span>　 <%= pg %> </span>
+ 		<% for (let i=1; i <=5; i++) {%> <% if (pg + i> pgco - 1) { %> <% break; %>
+ 		<% } %>
+ 		 	<span>　<a href="<%= url1 + (pg + i) + url2 %>"> <%= pg + i %> </a></span>
+ 		<% } %> <% if (pg < pgco) { %>
+ 			<span>　…　<a href="<%= url1 + pgco + url2 %>"> <%= pgco %> </a></span>
+ 		<% } %>
+ 	</code>
+	<span>　&gt;&gt;</span>
+</div>

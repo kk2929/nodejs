@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<title>ライブラリ メインメニュー</title>
+	<link rel="stylesheet" href="/manage/stylesheets/style.css">
+	<!-- jQueryのCDN -->
+	<script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+	<!-- jQuery UI -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="container btns1">
+			<h1>ライブラリ<br>メインメニュー</h1>
+			<!--  タブの部分  -->
+			<div class="tab-area">
+				<div>
+					<div class="tab">JavaScript（00-js）</div>
+					<div class="tab">ejs, html（10-ejs-html）</div>
+					<div class="tab">データベース（20-db）</div>
+				</div>
+				<div>
+					<div class="tab">AWS（50-aws）</div>
+					<div class="tab">CSS（80-css）</div>
+					<div class="tab">応用（90-advanced）</div>
+				</div>
+				<div>
+					<div class="tab">その他・実験（99-etc）</div>
+				</div>
+			</div>
+			<!--  タブ選択で表示される内容部分  -->
+			<div class="content-area">
+				<!--  tab1  JavaScript -->
+				<div class="content">
+					<h2 style="text-align: left;">・JavaScript の処理に関するもの。基本的にコンソールに出力している</h2>
+					<div class="nav">
+						<a href="/manage/00-js/tips/index/">tips(便利処理まとめ)</a>
+						<a href="/manage/00-js/calc/index/">calc</a>
+					</div>
+				</div>
+				<!--  tab2  ejs, html -->
+				<div class="content">
+					<h2 style="text-align: left;">・ejs,html に関するもの。DOMやjQueryを扱うものはここ</h2>
+					<div class="nav">
+						<a href="/manage/10-ejs-html/memo/index/">メモ</a>
+						<a href="/manage/10-ejs-html/file/upload/">file</a>
+					</div>
+				</div>
+				<!--  tab3  データベース -->
+				<div class="content">
+					<h2 style="text-align: left;">・データベースに関するもの。CRUDなど</h2>
+					<div class="nav">
+						<a href="/manage/20-db/mysql-crud/index/">mysql-crud</a>
+						<a href="/manage/20-db/mysql-crud2/index/">mysql(単元)</a>
+						<a href="/manage/20-db/mysql-crud3/index/">mysql<br>単元>カリキュラム</a>
+					</div>
+					<div class="nav">
+						<a href="/manage/20-db/oracle-crud/index/">oracle-crud</a>
+					</div>
+				</div>
+				<!--  tab4　AWS -->
+				<div class="content">
+					<h2 style="text-align: left;">・AWS に関するもの</h2>
+					<div class="nav">
+						<a href="/manage/50-aws/s3-upload/index/">s3-upload</a>
+					</div>
+				</div>
+				<!--  tab5　CSS -->
+				<div class="content">
+					<h2 style="text-align: left;">・css に関するもの</h2>
+					<div class="nav">
+						<a href="/manage/80-css/position/index/">position(配置)</a>
+						<a href="/manage/80-css/practical/index/">practical(実践)</a>
+					</div>
+				</div>
+				<!--  tab6　応用 -->
+				<div class="content">
+					<h2 style="text-align: left;">・jsやhtmlなどを複合的に扱ったもの。応用的な処理はここ。明確な基準はない</h2>
+					<div class="nav">
+						<a href="/manage/90-advanced/mail/index/">mail(sendgridでのメール送信)</a>
+						<a href="/manage/90-advanced/excel/index/">excel</a>
+						<a href="/manage/90-advanced/login/member/logind/">login</a>
+					</div>
+				</div>
+				<!--  tab7　その他・実験 -->
+				<div class="content">
+					<h2 style="text-align: left;">・テンプレート、実験的なもの</h2>
+					<div class="nav">
+						<a href="/manage/99-etc/template/index/">template</a>
+						<a href="/manage/99-etc/bool-check/index/">クエリの返り値</a>
+						<a href="/manage/99-etc/async/index/">async 同期処理</a>
+					</div>
+					<div class="nav">
+						<a href="/manage/99-etc/AtCorder/index/">AtCorder</a>
+					</div>
+				</div>
+			</div>
+			<!--  タブ部分終了  -->
+		</div>
+	</div>
+	<script type="text/javascript">
+		var tabName = "<%= tabName %>"	//タブで使うクッキーのkeyの名前
+	</script>
+	<script src="/manage/js/tab.js"></script><!--  タブで表示切り替え  -->
+</body>
+
+</html>

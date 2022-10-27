@@ -1,0 +1,25 @@
+<form class="selectform" id="submit_form" method="post" onchange="FormSubmit()">
+	<div class="headwrapper3">
+		<%- include('../../modules/ejs/pageSize') %>
+		<input class="resetbtn" type="button" value="全条件リセット" onclick="FormReset()">
+	</div>
+</form>
+
+<script type="text/javascript">
+	function FormSubmit() {
+		var target = document.getElementById("submit_form");
+		target.method = "post";
+		target.submit();
+	}
+	function FormReset() {
+		if (window.confirm('絞り込み条件をリセットしますか？')) {   // 確認ダイアログの内容
+			$('#pageSizelist').val(["20"]);
+			var target = document.getElementById("submit_form");
+			target.method = "post";
+			target.submit();
+		}
+		else {
+			return false;   // キャンセルで削除を中止
+		}
+	}
+</script>

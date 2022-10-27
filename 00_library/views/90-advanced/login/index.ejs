@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title><%= pageName %></title>
+	<link rel="stylesheet" href="/manage/stylesheets/style.css" />
+	<!-- jQueryのCDN -->
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+</head>
+
+<body>
+	<%- include(`${routespath}/../public/ejs/login-header`) %>
+	<div class="css1">
+		<input class="btn1" type="button" onclick="location.href='/manage/<%= filepath %>/member/logind/'" value="logind(ログイン後ページ)">
+		<p>※ログインセッションが切れている場合、「ログイン後ページ」へは遷移せず、このページにリダイレクトされます</p>
+	</div>
+	<hr>
+	<div style="height: 50px;"><%- message %></div>
+
+	<div class="box1">
+		<span class="box-title">ログイン</span>
+		<form style="align-items: flex-start;" class="css1" method="post" action="">
+			<div class="css6">
+				<input type="text" name="name" placeholder="名前">
+				<input type="text" name="password" placeholder="パスワード">
+			</div>
+			<button type="submit" class="btn1" style="margin: auto;">ログイン</button>
+		</form>
+	</div>
+
+	<script>
+	</script>
+</body>
+
+</html>

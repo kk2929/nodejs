@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>
+    ローカルファイルの内容表示
+  </title>
+  <link rel='stylesheet' href='stylesheets/style.css' />
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js">//jQueryのCDN</script>
+</head>
+
+<body>
+  <%- include('../../../public/ejs/header') %>
+  <input type="file" name="file_name">
+  <object></object>
+</body>
+<script>
+  $('input[name="file_name"]').on("change", function (e) {
+    var fileData = e.target.files[0];
+    if (fileData == undefined) {
+      console.log("ファイル選択がキャンセルされました");
+      var object = $(this).parents().children('object').get(0);
+      var cln = object.cloneNode(true);
+      cln.setAttribute("data", "");
+      object.parentNode.replaceChild(cln, object);
+    } else {
+      console.log("ファイル選択されました");
+      var object = $(this).parents().children('object').get(0);
+      var reader = new FileReader();
+      reader.onload = function () {
+        var cln = object.cloneNode(true);
+        cln.setAttribute("data", reader.result);
+        object.parentNode.replaceChild(cln, object);
+      }
+      reader.readAsDataURL(fileData);
+    }
+  });
+</script>
+
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title><%= pageName %></title>
+	<link rel="stylesheet" href="/manage/stylesheets/style.css" />
+	<!-- jQueryのCDN -->
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+</head>
+
+<body>
+	<%- include(`${routespath}/../public/ejs/header`) %>
+
+	<form method="post" action="update/?id=<%= rows[0].ID %>">
+		<div class="css5">
+			<div>
+				<span>ID</span>
+				<input type="number" name="id" size="80" readonly value="<%= rows[0].ID %>">
+			</div>
+			<div>
+				<span>STR_</span>
+				<input type="text" name="str_" size="80" value="<%= rows[0].STR_ %>">
+			</div>
+			<div>
+				<span>NUM_</span>
+				<input type="number" name="num_" size="80" value="<%= rows[0].NUM_ %>">
+			</div>
+			<div>
+				<% var d = rows[0].DATE_ %>
+				<span>DATE_</span>
+				<input type="date" name="date_" size="80" value="<%= d ? d.toFormat('YYYY-MM-DD') : '' %>">
+			</div>
+			<div>
+				<span>CREATION_TS</span>
+				<input type="text" name="CREATION_TS" size="80" readonly value="<%= rows[0].CREATION_TS %>">
+			</div>
+		</div>
+
+		<input class="btn1" type="submit" value="更　新">
+	</form>
+
+	<form method="post" action="delete/?id=<%= rows[0].ID %>" onSubmit="return check()" style="text-align: right;">
+		<input class="deletebtn" type="submit" value="削　除" />
+	</form>
+
+	<script>
+		function check() {
+			if (window.confirm("本当に削除しますか？")) {
+				// 確認ダイアログの内容
+				return true; // OKで削除を実行
+			} else {
+				return false; // キャンセルで削除を中止
+			}
+		}
+	</script>
+</body>
+
+</html>

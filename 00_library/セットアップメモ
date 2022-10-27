@@ -1,0 +1,5 @@
+cd C:\development\nginx-1.18.0
+start nginx
+cd C:\development\Nodejs\library
+net start mysql80
+npm start

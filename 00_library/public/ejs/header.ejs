@@ -1,0 +1,42 @@
+<div class="css3">
+	<span><%= locals.pageName || "" %></span>
+	<!--  変数pageNameの存在を確かめるためには、locals.オブジェクトを介して参照する。  -->
+	<!--  pageName ? pageName : "" ではダメ。pageName が undefined の時にエラーになる -->
+	<!-- <input class="btn1" type="button" onclick="location.href='/manage/'" value="メインメニューに戻る"> -->
+</div>
+
+<!-- パンくずリスト(トピックパス) -->
+<div class="breadcrumb">
+	<p>
+		<a href="/manage/">トップページ</a> >
+		<% for (let i in locals.breadcrumb) { %>
+		<a href="/manage/<%= breadcrumb[i][1] %>"><%= breadcrumb[i][0] %></a> >
+		<% } %>
+		<%= locals.pageName || "" %>
+	</p>
+</div>
+
+<% if (locals.pageDetail) { %>
+<div class="accordion-menu">[説明表示]</div>
+<div class="accordion-content">
+	<pre><%- pageDetail %></pre>
+</div>
+<% }; %>
+
+<script>
+	//クリックすると表示されるテキスト(アコーディオンメニュー)
+	$(function () {
+		var $Contents = $(".accordion-content")
+
+		$(".accordion-menu").click(function () {
+			var $this = $(this);
+			if ($Contents.css('display') == 'none') {
+				$Contents.slideDown(400),
+					$this.text("[説明非表示]");
+			} else {
+				$Contents.slideUp(400),
+					$this.text("[説明表示]")
+			};
+		});
+	});
+</script>

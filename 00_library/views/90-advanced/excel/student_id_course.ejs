@@ -1,0 +1,132 @@
+<thead>
+	<tr>
+		<th colspan="4">全てのログ（created_at 降順）</th>
+	</tr>
+	<tr>
+		<th>ID</th>
+		<th>operation</th>
+		<th>result</th>
+		<th>created_at</th>
+		<th>canswer</th>
+	</tr>
+</thead>
+<tbody>
+	<% for (var i in data) { %>
+	<% var operation = data[i].operation; %>
+	<% var result = data[i].result %>
+	<tr>
+		<td><%= data[i].id %></td>
+		<td>
+			<%= operation %>
+			<% if (operation == "cs") { %>
+			<span style="color : #0000ff; font-weight: bold;">[開始]</span>
+			<% } else if (operation == "ce") { %>
+			<span style="color : #ff0000; font-weight: bold;">[終了]</span>
+			<% } else if (operation == "c") { %>
+			<span style="color : #009900">[問題]</span>
+			<% } else { %>
+			<% } %>
+		</td>
+		<td>
+			<%= result %>
+			<% if (operation == "ce" && result == 1) { %>
+			<span style="color : #0000ff; font-weight: bold;">[合格]</span>
+			<% } else if (operation == "ce" && result == 9) { %>
+			<span style="color : #ff0000; font-weight: bold;">[不合格]</span>
+			<% } else if (operation == "c" && result == 1) { %>
+			<span style="color : #0099ff">[正解]</span>
+			<% } else if (operation == "c" && result == 9) { %>
+			<span style="color : #ff9900">[不正解]</span>
+			<% } else { %>
+			<% } %>
+		</td>
+		<td>
+			<% if (data[i].created_at !==null) { %>
+			<%- data[i].created_at.toFormat('YYYY-MM-DD HH24:MI:SS') %>
+			<% } else { %>
+			null
+			<% } %>
+		</td>
+		<td><%= data[i].canswer%></td>
+	</tr>
+	<% } %>
+</tbody>
+<thead>
+	<tr onclick="location.href='/manage/'">
+		<th colspan="8">有効なログ（created_at 降順）</th>
+	</tr>
+	<tr>
+		<th>ID</th>
+		<th>operation</th>
+		<th>result</th>
+		<th>テスト終了日時<br>テスト開始日時</th>
+		<th>完答までの時間</th>
+		<th>何回目に受けたテストか</th>
+		<th>正答数 / 問題数</th>
+		<th>正答率</th>
+	</tr>
+</thead>
+<tbody>
+	<% for (var i in data2) { %>
+	<% var operation = data2[i].operation; %>
+	<% var result = data2[i].result %>
+	<tr>
+		<td><%= data2[i].id %></td>
+		<td>
+			<%= operation %>
+			<% if (operation == "cs") { %>
+			<span style="color : #0000ff">[開始]</span>
+			<% } else if (operation == "ce") { %>
+			<span style="color : #ff0000">[終了]</span>
+			<% } else { %>
+			<% } %>
+		</td>
+		<td>
+			<%= result %>
+			<% if (operation == "ce" && result == 1) { %>
+			<span style="color : #0000ff">[合格]</span>
+			<% } else if (operation == "ce" && result == 0) { %>
+			<span style="color : #ff0000">[不合格]</span>
+			<% } else { %>
+			<% } %>
+		</td>
+		<td>
+			<% if (data2[i].created_at !==null) { %>
+			<%- data2[i].created_at.toFormat('YYYY-MM-DD HH24:MI:SS') %>
+			<% } else { %>
+			null
+			<% } %>
+			<br>
+			<% if (data2[i].start_time !==null) { %>
+			<%- data2[i].start_time.toFormat('YYYY-MM-DD HH24:MI:SS') %>
+			<% } else { %>
+			null
+			<% } %>
+		</td>
+		<td>
+			<!--  null か空文字でないなら  -->
+			<% if (![null, ""].includes(data2[i].clear_time)) { %>
+
+			<% var t = data2[i].clear_time %>
+			<% var m = Math.floor(t / (60)) %>
+			<% var s = t % (60) %>
+			<!--  分(m)は6桁までは表示  -->
+			<% m = ("      " + m).slice(-6) %>
+			<% s = ("  " + s).slice(-2) %>
+
+			<pre><%= m + "分 " + s + "秒"%></pre>
+
+			<% } else { %>
+			<% } %>
+		</td>
+		<td><%= data2[i].test_co %> 回目</td>
+
+		<% var q = ("   " + data2[i].question_co).slice(-3) %>
+		<% var o = ("    " + data2[i].correct_co).slice(-4) %>
+		<td>
+			<pre><%= o %> 問 / <%= q %> 問</pre><!-- preタグ：半角スペースをそのまま表示する -->
+		</td>
+		<td> <%= Math.round( o / q * 100 ) %> %</td>
+	</tr>
+	<% } %>
+</tbody>
