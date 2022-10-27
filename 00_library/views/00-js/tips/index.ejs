@@ -19,7 +19,7 @@
 		console.log("1:", obj1.p0);	//undefined
 		// console.log("2:", obj1.p0.p0);	//エラー
 		console.log("3:", obj1.p0?.p0);	//undefined
-		// 以下のURLによると、Node.jsではv14から対応している。フォトンはv8.5.0なので、サーバーサイドではオプショナルチェーンは使用できない
+		// 以下のURLによると、Node.jsではv14から対応している。v8.5.0では、サーバーサイドではオプショナルチェーンは使用できない
 		// https://qiita.com/suin/items/0a76ad88e494fd72f903
 
 		console.log("4:", obj1.p2ary[-1]);	//undefined

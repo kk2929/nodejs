@@ -1,8 +1,0 @@
-■使用しているグローバル変数
-./routes/index.js
-routespath = __dirname;//routesフォルダのパスをグローバル変数に。他の.jsファイル内で、.ejsの指定などで使用する。
-
-./app.js
-Bookshelf = require('bookshelf')(knex);//npm install bookshelf //Bookshelfをグローバル変数にすることで、他の.jsファイルでもBookshelfを使用できるようにしている
-
-connection = mysql.createConnection({ /* mysql（データベース）の設定 */
